@@ -13,10 +13,12 @@ import {
   Checkbox,
   Radio,
 } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 const FileUpload = () => {
   const inputRef = useRef();
   const [selectFile, setSelectFile] = useState(null);
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   // State for activities
   const [activityWindow, setActivityWindow] = useState(false);
@@ -86,6 +88,10 @@ const FileUpload = () => {
     setAnalyzeWindow(false)
   }
 
+  const handleNavigate = () => {
+    navigate('/wealth-guru')
+  }
+
   return (
     <div className="flex justify-center mx-auto bg-white rounded-lg shadow-lg gap-x-24 w-fit h-fit ">
       <Toaster />
@@ -120,10 +126,10 @@ const FileUpload = () => {
                 <IoMdClose className="text-[#3378b0]" onClick={handleRemoveFile}/>
               </button>
             </div>
-            <button className="px-4 py-2 mt-6 text-white bg-black rounded-md">Analyze</button>
+            <button className="px-4 py-2 mt-6 text-white bg-black rounded-md" onClick={handleNavigate}>Analyze</button>
           </div>
         ) : (
-          <div className="bg-[#ededed] border-[2px] border-black border-dashed rounded-mdcursor-pointer px-20 py-2 text-center flex flex-col items-center -mt-8 pb-5">
+          <div className="bg-[#ededed] border-[2px] border-black border-dashed rounded-mdcursor-pointer px-20 py-2 text-center flex flex-col items-center -mt-6 pb-5">
             <h4 className="text-[22px] font-semibold text-[#175195] px-4">
               Upload a File
             </h4>
@@ -202,7 +208,7 @@ const FileUpload = () => {
                   <input
                     type="text"
                     className="focus:outline-none border-[1px] border-black rounded-md px-2 py-0.5 w-[350px]"
-                    required={true}
+                    aria-required
                   />
                 </div>
                 {/* Date Picker */}
@@ -216,7 +222,7 @@ const FileUpload = () => {
                       <input
                         type="date"
                         className="border-[1px] rounded-sm border-black pl-1"
-                        required={true}
+                        aria-required
                       />
                     </div>
                     <div className="flex items-center gap-x-1">
@@ -224,7 +230,7 @@ const FileUpload = () => {
                       <input
                         type="date"
                         className="border-[1px] rounded-sm border-black pl-1"
-                        required={true}
+                        aria-required
                       />
                     </div>
                   </div>

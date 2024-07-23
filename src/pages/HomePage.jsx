@@ -20,7 +20,7 @@ const HomePage = () => {
       </div>
 
       {/* File Upload */}
-      <div className="w-full px-6 py-3 mt-6 h-fit">
+      <div className="w-full px-6 py-3 mt-2 h-fit">
         <FileUpload />
       </div>
     </div>
