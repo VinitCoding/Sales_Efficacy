@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import graph_1 from "../assets/distribution_of_current_location_states.png";
 import graph_2 from "../assets/gross_annual_income.png";
 import img_1 from "../assets/product_img/img_1.svg";
+import img_2 from "../assets/product_img/img_2.svg";
+import img_3 from "../assets/product_img/img_3.svg";
+import img_4 from "../assets/product_img/img_4.svg";
+import img_5 from "../assets/product_img/img_5.svg";
 import { IoHomeSharp } from "react-icons/io5";
 import { useLocation, useNavigate } from "react-router-dom";
-import chistats_logo from "../assets/chistats_logo.png";
 
 const WealthGuruPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [product, setProduct] = useState([{}]);
   const { data } = location.state;
-  const [productPresent, setProductPresent] = useState(false);
 
   console.log("Data arrived:", data);
 
@@ -20,22 +22,12 @@ const WealthGuruPage = () => {
   };
   const getCurrentDataItem = (num) => {
     setProduct([data.data[num]]);
-    setProductPresent(true);
   };
 
   console.log(product);
   return (
-    <div
-      className="bg-[#CBDDFF] h-screen"
-    >
-      <div className="fixed flex items-center justify-between w-full px-10 py-1 bg-white shadow-lg">
-        <h2 className="font-semibold text-[#1E1D5C] text-2xl text-darkBlue hover:cursor-default">
-          Wealth<span className="text-[#FF540B]"> Wise</span>
-        </h2>
-        <img src={chistats_logo} alt="logo" className="h-6 w-[120px]" />
-      </div>
-
-      <div className="flex justify-between pt-16 mx-4 ml-4">
+    <div className="pt-14">
+      <div className="flex justify-between mx-4 mt-4 ml-4">
         <select
           className="px-4 py-2 w-[300px] rounded-md"
           onChange={(e) => getCurrentDataItem(e.target.value)}
@@ -68,34 +60,20 @@ const WealthGuruPage = () => {
           </h2>
 
           <div className="flex justify-center p-3 mt-3 bg-white rounded-md gap-x-3 w-fit">
-            {productPresent ? (
-              product &&
+            {product &&
               product[0] &&
               product[0].map((item, index) => (
                 <div
-                  className="bg-[#ECECEC] w-fit p-2 rounded-md flex flex-col items-center justify-center"
+                  className="bg-[#ECECEC] w-fit p-2 rounded-md flex flex-col items-center justify-start"
                   key={index}
                 >
-                  <img src={img_1} alt="" className="w-24" />
-                  <h2 className="mt-1">
-                    <span className="font-semibold text-left">
-                      Product {index + 1} :{" "}
-                    </span>
-                    {item.rec}
+                  <img src={img_1} alt="" className="w-24"/>
+                  <h2>
+                    <span className="font-semibold text-left">Product {index + 1} :  </span>{item.rec}
                   </h2>
-                  <h3 className="">
-                    <span className="font-semibold">Recommendation Score:</span>{" "}
-                    {item.score}
-                  </h3>
+                  <h3><span className="font-semibold text-left">Recommendation Score:</span> {item.score}</h3>
                 </div>
-              ))
-            ) : (
-              <div className="bg-[#ECECEC] w-fit p-3 rounded-md flex flex-col items-center justify-center gap-y-2">
-                <img src={img_1} alt="" className="w-24" />
-                <h2>Product</h2>
-                <h3>Recommendation Score</h3>
-              </div>
-            )}
+              ))}
           </div>
         </div>
 

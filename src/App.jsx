@@ -5,19 +5,21 @@ import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import powered_by from './assets/powered_by.svg'
 import WealthGuruPage from "./pages/WealthGuruPage";
+import LeadCrafter from "./pages/LeadCrafter.jsx";
 
 const App = () => {
   return (
-    <div className="overflow bg-[#cfcfcf66] h-screen w-screen">
+    <div className="overflow bg-[#CBDDFF] h-screen w-screen">
     {/* Header */}
-      <header className='fixed w-full bg-white shadow-lg lg:py-2.5 md:py-4 lg:px-10 md:px-10'>
+      {/* <header className='fixed w-full px-10 py-1 bg-white shadow-lg'>
         <Header />
-      </header>
+      </header> */}
 
       <main className="w-full h-full ">
         <Routes>
           <Route path="/" element={<HomePage />}/>
-          <Route path="/wealth-guru" element={<WealthGuruPage />}/>
+          <Route path="/wealth-wise" element={<WealthGuruPage />}/>
+          <Route path="/lead_crafter" element={<LeadCrafter />}/>
         </Routes>
       </main>
 
