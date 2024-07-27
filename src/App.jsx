@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./pages/Header";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import powered_by from './assets/powered_by.svg'
+
 import WealthGuruPage from "./pages/WealthGuruPage";
 import LeadCrafter from "./pages/LeadCrafter.jsx";
 
@@ -23,9 +23,6 @@ const App = () => {
         </Routes>
       </main>
 
-      <footer className="flex justify-center -mt-8">
-        <img src={powered_by} className="w-40" />
-      </footer>
     </div>
   );
 };
