@@ -9,10 +9,13 @@ import React, { useState } from "react";
 import login_banner_img from "../assets/login_banner.jpg";
 import { BiSolidShow, BiSolidHide } from "react-icons/bi";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const LoginForm = () => {
   const emailID = "vinit.gite@chistats.com";
   const password = "Vinit";
+  const navigate = useNavigate();
 
   // State for opening login form
   const [open, setOpen] = useState(false);
@@ -27,10 +30,16 @@ const LoginForm = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   // State for handling errors
-  const [error, setError] = useState("");
+  const [error, setError] = useState({});
 
   const handleOpeningForm = () => {
     setOpen(!open);
+  };
+
+  const saveToLocalStorage = (form_data) => {
+    const save_info = localStorage.setItem("user_info", form_data);
+
+    console.log(save_info);
   };
 
   const validateSchema = Yup.object({
@@ -45,8 +54,21 @@ const LoginForm = () => {
     try {
       await validateSchema.validate(formData, { abortEarly: false });
       console.log("Form Submitted");
+      saveToLocalStorage(formData);
+      setTimeout(() => {
+        setTimeout(() => {
+          navigate("/file_upload");
+        }, 3500);
+        toast.success("LogIn Successfull");
+      }, 1500);
     } catch (error) {
-      setError(error);
+      const newError = {};
+
+      error.inner.forEach((err) => {
+        newError[err.path] = err.message;
+      });
+
+      setError(newError);
     }
   };
 
@@ -67,12 +89,14 @@ const LoginForm = () => {
   return (
     <div>
       <Button
-        className="px-4 py-2 text-base font-medium normal-case w-fit"
+        className="px-4 py-2 text-[14px] font-semibold normal-case w-fit "
         onClick={handleOpeningForm}
+        variant="gradient"
       >
-        Login
+        Login here
       </Button>
       <Dialog open={open} handler={handleOpeningForm} size="xs">
+        <Toaster />
         <DialogHeader className="flex flex-col items-start justify-start text-left">
           <img
             src={login_banner_img}
@@ -96,9 +120,9 @@ const LoginForm = () => {
                 value={formData.email}
                 onChange={handleOnChange}
               />
-              {error && <p className="text-red-400">{error}</p>}
+              {error.email && <div className="text-red-400">{error.email}</div>}
             </div>
-            <div className="flex flex-col mt-3.5 gap-y-1">
+            <div className="flex flex-col mt-2 gap-y-1">
               <div className="flex items-center justify-between">
                 <label className="text-base text-black">Password</label>
                 <a
@@ -134,18 +158,22 @@ const LoginForm = () => {
                   </div>
                 )}
               </div>
-              {error && <p className="text-red-400">{error}</p>}
+              {error.password && (
+                <div className="text-red-400">{error.password}</div>
+              )}
             </div>
+
+            <button
+              className="px-4 mt-2 py-2 text-[13px] w-full bg-gradient-to-r from-gray-900 to-gray-700 text-white font-semibold rounded-md"
+              type="submit"
+              onSubmit={handleSubmit}
+            >
+              Login
+            </button>
           </form>
         </DialogBody>
 
-        <DialogFooter className="flex flex-col -mt-2 gap-y-3">
-          <button
-            className="px-4 py-2 text-[13px] w-full bg-gradient-to-r from-gray-900 to-gray-700 text-white font-semibold rounded-md"
-            type="submit" onSubmit={handleSubmit}
-          >
-            Login
-          </button>
+        <DialogFooter className="flex flex-col -mt-6 gap-y-3">
           <a href="#sign_up" className="text-[12px] text-black hover:underline">
             Don't have an accout? <span className="font-semibold">SignUp</span>
           </a>

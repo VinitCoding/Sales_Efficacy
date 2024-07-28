@@ -57,7 +57,6 @@ const FileUpload = () => {
   const handleClick = () => {
     inputRef.current.click();
   };
-
   const handleActivityOption = (option) => {
     setActivity(option);
     console.log(option);
@@ -130,7 +129,13 @@ const FileUpload = () => {
           }, 2000);
         }, 2000);
         console.log(response);
-      } catch (error) {}
+      } catch (error) {
+        toast.error("Error while uploading and fetching the data...", {
+          duration: 3000,
+        });
+
+        console.log(error);
+      }
     }
   };
 
@@ -345,16 +350,11 @@ const FileUpload = () => {
         )}
       </div>
 
-      {
-        selectFile ? (
-          <img
-        src={analyze_img}
-        className="w-[300px] pr-10 py-4"
-      />
-        ): (
-          <img src={upload_img} alt="" className="w-[400px] pr-10"/>
-        )
-      }
+      {selectFile ? (
+        <img src={analyze_img} className="w-[300px] pr-10 py-4" />
+      ) : (
+        <img src={upload_img} alt="" className="w-[400px] pr-10" />
+      )}
     </div>
   );
 };
