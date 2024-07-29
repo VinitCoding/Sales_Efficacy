@@ -33,8 +33,8 @@ const WealthGuruPage = () => {
   };
 
   const openLandingPage = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
   const getCurrentDataItem = (num) => {
     setProduct([data.data[num]]);
     setProductPresent(true);
@@ -242,14 +242,9 @@ const WealthGuruPage = () => {
           </h2>
 
           <div className="grid grid-cols-2 mt-4 place-items-center mx-auto gap-6 w-[45%]">
-            <Dialog>
-              <DialogHeader>Graph 1</DialogHeader>
-              <DialogBody>
-                <div className="p-2 bg-white rounded-lg w-fit">
-                  <img src={graph_1} className="w-[600px]" />
-                </div>
-              </DialogBody>
-            </Dialog>
+            <div className="p-2 bg-white rounded-lg w-fit">
+              <img src={graph_1} className="w-[600px]" />
+            </div>
             <div className="p-2 bg-white rounded-lg w-fit">
               <img src={graph_2} alt="" className="w-[600px]" />
             </div>
@@ -257,7 +252,7 @@ const WealthGuruPage = () => {
               <img src={graph_2} alt="" className="w-[600px]" />
             </div>
             <div className="p-2 bg-white rounded-lg w-fit">
-              <img src={graph_2} alt="" className="w-[600px]" />
+              <img src={graph_1} alt="" className="w-[600px]" />
             </div>
           </div>
         </div>
