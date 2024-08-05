@@ -19,7 +19,7 @@ const FileUpload = () => {
   const [selectFile, setSelectFile] = useState(null);
   const [data, setData] = useState({});
   const navigate = useNavigate();
-  const url = "http://localhost:8020";
+  const url = "http://salesassist.chistats.ai:8020";
 
   // State for activities
   const [activityWindow, setActivityWindow] = useState(false);
@@ -119,15 +119,14 @@ const FileUpload = () => {
         setTimeout(() => {
           toast.success("Data fetched successfully", {
             id: toastID,
-            duration: 2000,
+            duration: 1500,
           });
           setTimeout(() => {
             if (data) {
               navigate("/wealth-wise", { state: { data: resp_data } });
-            } else {
             }
-          }, 2000);
-        }, 2000);
+          }, 1000);
+        }, 1000);
         console.log(response);
       } catch (error) {
         toast.error("Error while uploading and fetching the data...", {
@@ -142,31 +141,31 @@ const FileUpload = () => {
   return (
     <div className="flex justify-center mx-auto bg-white rounded-lg shadow-lg gap-x-28 w-fit h-fit ">
       <Toaster />
-      <div className="h-full px-16 pt-16 w-fit">
         <input
           type="file"
           ref={inputRef}
           style={{ display: "none" }}
           onChange={handleChange}
         />
-
+      <div className="h-full pt-16 pr-12 pl-11 w-fit">
         {/* Upload File */}
 
         {analyzeWindow ? (
-          <div className="bg-[#EDEDED] flex flex-col justify-center items-center -mt-10 px-5 py-3 border-[2px] border-dashed border-black rounded-sm mb-6">
+          <div className="bg-[#ededed] flex flex-col justify-center items-center -mt-10 px-5 py-3 border-[2px] border-dashed border-black rounded-sm mb-6">
             {/* Heading part */}
             <div className="text-center">
               <h2 className="text-[25px] font-bold ">Analyze File</h2>
-              <h3 className="mt-1.5 text-[20px] font-semibold text-[#2b2b2b] text-start">
-                We help you analyze your leads better
+              {/* <br></br> */}
+              <h3 className="mt-1.5 text-[20px] font-semibold text-[#2b2b2b] text-center">
+                We help you analyze your <span className="text-[#FF540B]">leads better</span>
               </h3>
               <p className="text-base text-[#5c5c5c] text-start">
-                Our goal is to carve out the best leads from you humongous data
+                Our goal is to carve out the <span className="text-[#FF540B]">BEST</span> leads from your <span className="text-[#FF540B]">humongous</span> data
               </p>
             </div>
 
             {/* Body Part */}
-            <div className="flex overflow-y-auto justify-center items-center px-3 py-3 rounded-lg gap-x-5 bg-[#F8F7F7] mt-5 w-fit">
+            <div className="flex overflow-y-auto justify-evenly items-center p-2 gap-x-3 rounded-lg bg-[#F8F7F7] mt-5 w-fit">
               <FaFileAlt className="text-[#3884c2] text-xl" />
               <div className="flex flex-col items-center justify-center gap-x-1">
                 <h3 className="text-[16px]">{selectFile.name}</h3>
@@ -179,7 +178,7 @@ const FileUpload = () => {
               </button>
             </div>
             <button
-              className="px-4 py-2 mt-6 text-white bg-black rounded-md"
+              className="px-4 py-2 mt-6 text-white bg-[#FF540B] rounded-md"
               onClick={handleNavigate}
             >
               Analyze
@@ -187,22 +186,22 @@ const FileUpload = () => {
           </div>
         ) : (
           <div className="bg-[#ededed] border-[2px] border-black border-dashed rounded-mdcursor-pointer px-20 py-2 mb-8 text-center flex flex-col items-center -mt-6 pb-5">
-            <h4 className="text-[22px] font-semibold text-[#175195] px-4">
+            <h4 className="text-[22px] font-semibold text-[#1e1d5c] px-4">
               Upload a File
             </h4>
-            <hr className="text-[#fd3030] w-full border-[1px] mt-2" />
+            <hr className="text-[#1e1d5c] w-full border-[1px] mt-2" />
             <h4 className="text-lg ">
-              Get Insights on your choice of Client Data file
+              Get <span className="text-[#FF540B]">Insights</span> on your choice of <span className="text-[#FF540B]">Client Data</span> file
             </h4>
             <button
-              className={`bg-[#3C3C3C] text-white px-4 py-2 rounded-md mt-6 text-center `}
+              className={`bg-[#FF540B] text-white px-4 py-2 rounded-md mt-6 text-center `}
               onClick={handleClick}
             >
               Click to upload File
             </button>
-            <p className="text-[#3C3C3C] text-[17px] font-semibold mt-6">
+            <p className="text-[#1e1d5c] text-[17px] font-semibold mt-6">
               Supported File Formats:{" "}
-              <span className="text-[#989898] ">.xls, .csv, .xlsx</span>
+              <span className="text-[#1e1d5c] ">.xls, .xlsx, .csv</span>
             </p>
             {message && (
               <p className="mt-3 text-base font-semibold text-red-400">
@@ -221,28 +220,31 @@ const FileUpload = () => {
             <DialogBody className="flex flex-col -mt-3">
               <Radio
                 id="lead_crafter"
-                label="Lead Crafter"
+                label="LeadCrafter: Get Shortlisted Sales Leads"
                 name="activity"
                 onChange={(e) => handleActivityOption(e.target.value)}
                 value="lead_crafter"
+                
               />
+              <br></br>
               <Radio
                 id="cross_sell"
-                label="Wealth Wise"
+                label="WealthWise: Get Product Recommendations for your Users"
                 name="activity"
                 onChange={(e) => handleActivityOption(e.target.value)}
                 value="cross_sell"
+                
               />
             </DialogBody>
             <DialogFooter className="flex gap-x-6">
               <button
-                className="px-4 py-2 text-black bg-transparent rounded-lg outline hover:shadow-md"
+                className="px-4 py-2 text-[#1E1D5C] bg-transparent rounded-lg border-[1px] border-[#1E1D5C] hover:shadow-md"
                 onClick={NavigateBackToSelectFile}
               >
                 Close
               </button>
               <button
-                className="px-4 py-2 text-white bg-black rounded-lg hover:shadow-xl"
+                className="px-4 py-2 text-white bg-[#1E1D5C] rounded-lg hover:shadow-xl"
                 onClick={() => handleValueToParameters(activity)}
               >
                 Next
@@ -254,13 +256,13 @@ const FileUpload = () => {
         {/* Parameter Window */}
         {parameterWindow && (
           <Dialog open={parameterWindow} size="md">
-            <DialogHeader>Fill the parameters</DialogHeader>
+            <DialogHeader>Fill the Parameters</DialogHeader>
             <DialogBody className="-mt-3">
               <form className="flex flex-col gap-y-4">
                 {/* User ID */}
                 <div className="flex items-center justify-between">
                   <label className="text-[16px] text-black">
-                    User ID Columns<span className="text-red-500">*</span>
+                    User ID Columns
                   </label>
                   <input
                     type="text"
@@ -271,7 +273,7 @@ const FileUpload = () => {
                 {/* Date Picker */}
                 <div className="flex items-center justify-between">
                   <label className="text-[16px] text-black ">
-                    Recommendation Period<span className="text-red-500">*</span>
+                    Recommendation Period
                   </label>
                   <div className="flex items-center gap-x-2">
                     <div className="flex items-center gap-x-1">
@@ -320,6 +322,7 @@ const FileUpload = () => {
                     <option disabled hidden selected>
                       Select Data
                     </option>
+                    <option value="">-- Select All --</option>
                     <option value="">Existing Portfolio</option>
                     <option value="">SIP Installments</option>
                     <option value="">SIP Period</option>
@@ -334,14 +337,16 @@ const FileUpload = () => {
             </DialogBody>
             <DialogFooter className="flex gap-x-4">
               <button
-                className="px-4 py-2 bg-transparent border-[1.8px] border-black text-black rounded"
+                className="px-4 py-2 bg-transparent border-[1.8px] border-[#1e1d5c] text-[#1e1d5c]"
                 onClick={NavigateBackToActivityWindow}
+                style={{ borderRadius: '12px' }}
               >
                 Cancel
               </button>
               <button
-                className="px-4 py-2 text-white bg-black rounded"
+                className="px-4 py-2 border-[1.8px] border-[#1e1d5c] text-white bg-[#1e1d5c]"
                 onClick={OpenAnalyzeWindow}
+                style={{ borderRadius: '12px' }}
               >
                 Submit
               </button>

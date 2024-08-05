@@ -10,29 +10,30 @@ import { MdOutlineLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const name = 'Atharv Ganla'
+  const email = 'atharv.ganla@chistats.com'
   const  navigate = useNavigate()
   const openLandingPage = () => {
     navigate('/')
   }
   return (
-    <div className="w-screen h-screen overflow-hidden tracking-wider">
+    <div className="w-screen h-screen overflow-hidden ">
       {/* Header */}
       <div className="fixed flex items-center justify-between w-full px-10 py-1 bg-white shadow-lg">
-        <h2 className="font-semibold text-[#1E1D5C] text-2xl text-darkBlue hover:cursor-default">
-          Sales<span className="text-[#FF540B]"> Assist</span>
+        <h2 className="font-bold text-[#1E1D5C] text-2xl text-darkBlue hover:cursor-default">
+          Sales<span className="text-[#FF540B]">Assist</span>
         </h2>
         <img src={chistats_logo} alt="logo" className="w-[115px]" />
       </div>
       {/* Home Page */}
-      <div className="flex items-center justify-center gap-x-10 pt-[60px] relative">
+      <div className="flex items-center justify-center gap-x-20 pt-[60px] relative">
         <img src={bg_img} alt="insurance_img" className="w-[250px]" />
         <div className="w-[647px] flex flex-col gap-y-4">
-          <h2 className="text-[40px] font-[700] w-[500px] leading-[50px] tracking-wider">
-            Unlock Your Financial Potential with WealthWise
+          <h2 className="text-[40px] font-[700] w-[600px] leading-[50px] ">
+            Enhance Your <span className="text-[#FF540B]">Financial Dreams</span> with Sales<span className="text-[#FF540B]">Assist</span>
           </h2>
-          <p className="text-[18px] leading-[30px] w-[510px] tracking-wider">
-            Get personalized and comprehensive recommendations from your
-            <span className="font-semibold">AI-powered companion.</span>
+          <p className="text-[18px] leading-[30px] w-[480px] tracking-wide">
+          Discover unique and extensive suggestions from your <span className="font-semibold"><span className="text-[#FF540B]">AI-enabled</span> companion.</span>
           </p>
         </div>
 
@@ -53,8 +54,8 @@ const HomePage = () => {
             <div className="flex items-center justify-center gap-x-3">
               <FaUserCircle className="text-[40px] text-[#3a3a3a]" />
               <div className="text-[#1E1D5C] mt-1">
-                <h2 className="text-lg font-bold">Vinit</h2>
-                <p>vinit.gite@chistats.com</p>
+                <h2 className="text-lg font-bold">{name}</h2>
+                <p>{email}</p>
               </div>
             </div>
             <hr className="border-[1px] w-full mt-2" />
@@ -71,7 +72,7 @@ const HomePage = () => {
         </Popover>
       </div>
       {/* File Upload */}
-      <div className="w-full px-6 py-3 mt-2 h-fit">
+      <div className="w-full px-6 py-3 mt-6 h-fit">
         <FileUpload />
       </div>
 

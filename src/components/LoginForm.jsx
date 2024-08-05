@@ -59,7 +59,7 @@ const LoginForm = () => {
         setTimeout(() => {
           navigate("/file_upload");
         }, 3500);
-        toast.success("LogIn Successfull");
+        toast.success("Login Successful");
       }, 1500);
     } catch (error) {
       const newError = {};
@@ -86,15 +86,15 @@ const LoginForm = () => {
 
   console.log(formData);
   console.log(error);
+  // #1c1b70
   return (
     <div>
-      <Button
-        className="px-4 py-2 text-[14px] font-semibold normal-case w-fit "
+      <button
+        className="px-4 py-2 text-[14px] font-semibold normal-case w-fit bg-gradient-to-r from-[#3c3abe] to-[#1c1b70] text-white rounded tracking-wider hover:shadow-lg hover:shadow-[#1e1d5c98]"
         onClick={handleOpeningForm}
-        variant="gradient"
       >
-        Login here
-      </Button>
+        Login
+      </button>
       <Dialog open={open} handler={handleOpeningForm} size="xs">
         <Toaster />
         <DialogHeader className="flex flex-col items-start justify-start text-left">
@@ -120,7 +120,7 @@ const LoginForm = () => {
                 value={formData.email}
                 onChange={handleOnChange}
               />
-              {error.email && <div className="text-red-400">{error.email}</div>}
+              {error.email && <p className="text-red-400">{error.email}</p>}
             </div>
             <div className="flex flex-col mt-2 gap-y-1">
               <div className="flex items-center justify-between">
@@ -145,14 +145,14 @@ const LoginForm = () => {
                 {isShowPassword ? (
                   <>
                     <BiSolidShow
-                      className="mr-2 text-lg text-black hover:cursor-pointer"
+                      className="mr-2 text-lg text-[#1c1b70] hover:cursor-pointer"
                       onClick={handlePassowrd}
                     />
                   </>
                 ) : (
                   <div>
                     <BiSolidHide
-                      className="mr-2 text-lg text-black hover:cursor-pointer"
+                      className="mr-2 text-lg text-[#1c1b70] hover:cursor-pointer"
                       onClick={handlePassowrd}
                     />
                   </div>
@@ -164,7 +164,7 @@ const LoginForm = () => {
             </div>
 
             <button
-              className="px-4 mt-2 py-2 text-[13px] w-full bg-gradient-to-r from-gray-900 to-gray-700 text-white font-semibold rounded-md"
+              className="px-4 mt-4 py-2 text-[13px] w-full bg-gradient-to-r from-[#35338f] to-[#17165f] text-white font-semibold rounded-md"
               type="submit"
               onSubmit={handleSubmit}
             >
@@ -174,7 +174,7 @@ const LoginForm = () => {
         </DialogBody>
 
         <DialogFooter className="flex flex-col -mt-6 gap-y-3">
-          <a href="#sign_up" className="text-[12px] text-black hover:underline">
+          <a href="#sign_up" className="text-[12px] text-[#17165f] hover:underline">
             Don't have an accout? <span className="font-semibold">SignUp</span>
           </a>
         </DialogFooter>
